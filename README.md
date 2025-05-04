@@ -1,4 +1,4 @@
-# Data Structures and Algorithms - Topics Index
+# Data Structures and Algorithms (LeetCode) - Topics Index
 
 This repository contains implementations and explanations of various data structures and algorithms, organized by topic.
 

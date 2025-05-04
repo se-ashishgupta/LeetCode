@@ -1,4 +1,4 @@
-# LeetoCode Coding Problems Collection
+# Arrays Coding Problems Collection
 
 ## Table of Contents
 
