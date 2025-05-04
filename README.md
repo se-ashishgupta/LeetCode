@@ -6,7 +6,7 @@ This repository contains implementations and explanations of various data struct
 
 ### [Arrays](/Arrays/README.md)
 
-- [Two Sum](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
+- [Two Sum](/Arrays/README.md#1-two-sum) - Find two numbers in an array that add up to a target value
 - [Maximum Subarray](/Arrays/README.md#maximum-subarray) - Find the contiguous subarray with the largest sum
 - [Container With Most Water](/Arrays/README.md#container-with-most-water) - Find two lines that contain the most water
 
