@@ -11,51 +11,6 @@ This repository contains implementations and explanations of various data struct
 
 -
 
-### [Strings](/Strings/README.md)
-
-- [Valid Anagram](/Strings/README.md#valid-anagram) - Determine if one string is an anagram of another
-- [Longest Substring Without Repeating Characters](/Strings/README.md#longest-substring-without-repeating-characters) - Find the length of the longest substring without repeating characters
-
-### [Linked Lists](/LinkedLists/README.md)
-
-- [Reverse Linked List](/LinkedLists/README.md#reverse-linked-list) - Reverse a singly linked list
-- [Merge Two Sorted Lists](/LinkedLists/README.md#merge-two-sorted-lists) - Merge two sorted linked lists into one sorted list
-
-### [Trees](/Trees/README.md)
-
-- [Maximum Depth of Binary Tree](/Trees/README.md#maximum-depth-of-binary-tree) - Find the maximum depth of a binary tree
-- [Binary Tree Level Order Traversal](/Trees/README.md#binary-tree-level-order-traversal) - Return the level order traversal of a binary tree
-
-### [Dynamic Programming](/DynamicProgramming/README.md)
-
-- [Fibonacci Number](/DynamicProgramming/README.md#fibonacci-number) - Calculate the nth Fibonacci number
-- [Climbing Stairs](/DynamicProgramming/README.md#climbing-stairs) - Count the number of ways to climb stairs
-
-### [Sorting and Searching](/SortingSearching/README.md)
-
-- [Binary Search](/SortingSearching/README.md#binary-search) - Search a sorted array for a target value
-- [Merge Sort](/SortingSearching/README.md#merge-sort) - Implementation of the merge sort algorithm
-
-### [Graphs](/Graphs/README.md)
-
-- [DFS Traversal](/Graphs/README.md#dfs-traversal) - Implementation of depth-first search
-- [BFS Traversal](/Graphs/README.md#bfs-traversal) - Implementation of breadth-first search
-
-### [Hash Tables](/HashTables/README.md)
-
-- [Design HashMap](/HashTables/README.md#design-hashmap) - Implementation of a hash map
-- [Group Anagrams](/HashTables/README.md#group-anagrams) - Group strings that are anagrams of each other
-
-### [Greedy Algorithms](/Greedy/README.md)
-
-- [Jump Game](/Greedy/README.md#jump-game) - Determine if you can reach the last index
-- [Best Time to Buy and Sell Stock](/Greedy/README.md#best-time-to-buy-and-sell-stock) - Maximize profit by buying and selling stock
-
-### [Backtracking](/Backtracking/README.md)
-
-- [Subsets](/Backtracking/README.md#subsets) - Find all possible subsets of a set
-- [N-Queens](/Backtracking/README.md#n-queens) - Place N queens on an NxN chessboard
-
 ## Structure
 
 Each topic folder contains:
