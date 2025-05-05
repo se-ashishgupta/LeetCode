@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-- [1. 1-Two Sum](#1-two-sum)
-- [2. 75-Sort Colors](#2-sort-colors)
+- [1. Two Sum(1)](#1-two-sum)
+- [2. Sort Colors(75)](#2-sort-colors)
   <!-- Add more problems here as you solve them -->
   <!-- - [3. Problem Name](#3-problem-name) -->
 
