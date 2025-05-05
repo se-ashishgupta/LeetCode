@@ -6,8 +6,8 @@ This repository contains implementations and explanations of various data struct
 
 ### [Arrays](/Arrays/README.md)
 
-- [Two Sum](/Arrays/README.md#1-two-sum) - Find two numbers in an array that add up to a target value
-- [Two Sum](/Arrays/README.md#2-sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
+- [1-Two Sum](/Arrays/README.md#1-two-sum) - Find two numbers in an array that add up to a target value
+- [75-Sort Color](/Arrays/README.md#2-sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
 
 -
 
