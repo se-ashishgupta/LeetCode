@@ -4,7 +4,7 @@
 
 - [1. Two Sum(1)](#1-two-sum)
 - [2. Sort Colors(75)](#2-sort-colors)
-- [Majority Element(169)](#majority-element)
+- [3. Majority Element(169)](#majority-element)
   <!-- Add more problems here as you solve them -->
   <!-- - [3. Problem Name](#3-problem-name) -->
 
