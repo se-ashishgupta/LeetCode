@@ -4,6 +4,7 @@
 
 - [1. Two Sum(1)](#1-two-sum)
 - [2. Sort Colors(75)](#2-sort-colors)
+- [Majority Element(169)](#majority-element)
   <!-- Add more problems here as you solve them -->
   <!-- - [3. Problem Name](#3-problem-name) -->
 
@@ -221,6 +222,121 @@ void sortColorsOptimal(vector<int> &arr)
 | Optimal (Dutch Flag)  | O(N)            | O(1)             |
 
 ---
+
+## Majority Element
+
+### Problem Statement
+
+Find the majority element in an array. A majority element in an array is an element that appears more than n/2 times, where n is the size of the array.
+
+### Example
+
+```
+Input: arr = [8, 3, 4, 8, 8]
+Output: 8
+Explanation: 8 appears 3 times which is more than 5/2 = 2.5 times.
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(n²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. For each element, count its occurrences in the array using a nested loop
+2. If any element appears more than n/2 times, return it as the majority element
+3. If no such element exists, return -1
+
+```cpp
+int majorityElementNaive(vector<int> &arr)
+{
+    int n = arr.size(); // Size of the array
+
+    for (int i = 0; i < n; i++) // Traverse each element
+    {
+        int count = 1; // Initialize count of current element
+
+        // Count occurrences of arr[i] in the array
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[i] == arr[j])
+            {
+                count++;
+            }
+        }
+
+        // If count is more than n/2, return this element
+        if (count > n / 2)
+        {
+            return arr[i];
+        }
+    }
+
+    return -1; // No majority element found
+}
+```
+
+### Approach 2: Boyer-Moore Majority Voting Algorithm (Optimal)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. **Find a Candidate**:
+   - Assume the first element is the majority candidate
+   - Traverse the array and keep track of a count
+   - If the count reaches zero, reset the candidate to the current element
+2. **Verify the Candidate**:
+   - Check if the candidate actually appears more than n/2 times
+   - If yes, return the candidate; otherwise, return -1
+
+```cpp
+int majorityElementEfficient(vector<int> &arr)
+{
+    int n = arr.size();
+    int count = 1;          // Initialize count for potential majority element
+    int candidate = arr[0]; // Assume first element is the majority candidate
+
+    // Step 1: Find a candidate for the majority element
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] == candidate)
+        {
+            count++; // Increment count if same as candidate
+        }
+        else
+        {
+            count--; // Decrease count if different
+
+            if (count == 0) // If count reaches zero, choose a new candidate
+            {
+                candidate = arr[i];
+                count = 1;
+            }
+        }
+    }
+
+    // Step 2: Verify if the candidate is actually the majority element
+    count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == candidate)
+        {
+            count++;
+        }
+    }
+
+    // If count is greater than n/2, return the candidate
+    if (count > n / 2)
+    {
+        return candidate;
+    }
+
+    return -1; // No majority element found
+}
+```
 
 <!-- Template for adding new problems -->
 <!--
