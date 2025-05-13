@@ -5,6 +5,7 @@
 - [1. Two Sum(1)](#1-two-sum)
 - [2. Sort Colors(75)](#2-sort-colors)
 - [3. Majority Element(169)](#majority-element)
+- [4. Maximum Sum Subarray(53)](#maximum-sum-subarray)
   <!-- Add more problems here as you solve them -->
   <!-- - [3. Problem Name](#3-problem-name) -->
 
@@ -337,6 +338,110 @@ int majorityElementEfficient(vector<int> &arr)
     return -1; // No majority element found
 }
 ```
+
+---
+
+## Maximum Sum Subarray
+
+### Problem Statement
+
+Given an array of integers (potentially including negative numbers), find the contiguous subarray with the largest sum.
+
+### Examples
+
+```
+Example 1:
+Input: arr = [1, 2, 3]
+Output: 6
+Explanation: The entire array forms the maximum sum subarray.
+
+Example 2:
+Input: arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Output: 6
+Explanation: The subarray [4, -1, 2, 1] has the largest sum = 6.
+```
+
+### Approach 1: Naive (Brute Force)
+
+- **Time Complexity**: O(n²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Use two nested loops to consider all possible subarrays
+2. The outer loop selects the starting position
+3. The inner loop calculates the sum from the starting position to each possible ending position
+4. Keep track of the maximum sum encountered
+
+```cpp
+int maximumSumSubarrayNaive(vector<int> &arr)
+{
+    int n = arr.size(); // Size of the array
+    int res = 0;        // Initialize result to 0
+
+    // Outer loop: Start from every index
+    for (int i = 0; i < n; i++)
+    {
+        int sum = 0; // Sum of the current subarray
+
+        // Inner loop: Calculate the sum of subarrays starting from index i
+        for (int j = i; j < n; j++)
+        {
+            sum += arr[j];       // Add current element to the sum
+            res = max(res, sum); // Update the result if a larger sum is found
+        }
+    }
+
+    return res; // Return the maximum sum
+}
+```
+
+### Approach 2: Kadane's Algorithm (Optimal)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Use a single pass through the array
+2. Maintain two variables:
+   - `maxEnding`: Maximum sum of subarray ending at current position
+   - `res`: Overall maximum sum found so far
+3. For each element, decide whether to:
+   - Extend the previous subarray by adding the current element
+   - Start a new subarray beginning with the current element
+4. Take the maximum of these two options
+
+```cpp
+int kadneAlgorithm(vector<int> &arr)
+{
+    int n = arr.size();     // Size of the array
+    int maxEnding = arr[0]; // Maximum sum of subarray ending at the first element
+    int res = maxEnding;    // Initialize result with the first element's value
+
+    // Traverse the array starting from the second element
+    for (int i = 1; i < n; i++)
+    {
+        // Update maxEnding:
+        // - Either extend the previous subarray or start a new subarray with the current element.
+        maxEnding = max(arr[i], maxEnding + arr[i]);
+
+        // Update the result if a larger sum is found
+        res = max(res, maxEnding);
+    }
+
+    return res; // Return the maximum sum
+}
+```
+
+### Summary Table
+
+| Approach            | Time Complexity | Space Complexity |
+| ------------------- | --------------- | ---------------- |
+| Naive (Brute Force) | O(n²)           | O(1)             |
+| Kadane's Algorithm  | O(n)            | O(1)             |
+
+---
 
 <!-- Template for adding new problems -->
 <!--

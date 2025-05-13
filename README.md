@@ -9,8 +9,7 @@ This repository contains implementations and explanations of various data struct
 - [Two Sum(1)](/Arrays/README.md#1-two-sum) - Find two numbers in an array that add up to a target value
 - [Sort Color(75)](/Arrays/README.md#2-sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
 - [Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
-
--
+- [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
 
 ## Structure
 
