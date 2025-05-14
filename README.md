@@ -11,6 +11,7 @@ This repository contains implementations and explanations of various data struct
 - [Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
 - [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
 - [Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
+- [Rearrange Array Elements by Sign](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
 
 ## Structure
 
@@ -33,4 +34,4 @@ Feel free to contribute additional problems, solutions in different languages, o
 
 ---
 
-_Last updated: May 4, 2025_
+_Last updated: May 14, 2025_

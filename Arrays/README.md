@@ -7,8 +7,7 @@
 - [3. Majority Element(169)](#majority-element)
 - [4. Maximum Sum Subarray(53)](#maximum-sum-subarray)
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
-  <!-- Add more problems here as you solve them -->
-  <!-- - [3. Problem Name](#3-problem-name) -->
+- [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 
 ---
 
@@ -528,6 +527,97 @@ int stockBuySellEfficient(vector<int> &arr)
     }
 
     return maxProfit; // Return the maximum profit found
+}
+```
+
+---
+
+## Rearrange Array Elements by Sign
+
+### Problem Statement
+
+Given an array `nums` containing **equal numbers of positive and negative integers**, rearrange them such that:
+
+1. **Alternating sign order** (positive at even indices, negative at odd indices)
+2. **Preserve the original relative order** of positives and negatives
+
+### Example
+
+```
+Input: [3, 1, -2, -5, 2, -4]
+Output: [3, -2, 1, -5, 2, -4]
+```
+
+### Approach 1: Using Extra Arrays
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(n)
+
+#### Logic
+
+1. Separate positives and negatives into two separate arrays
+2. Merge them back into the result in alternating order
+
+```cpp
+vector<int> rearrangeArrayNaive(vector<int> &nums)
+{
+    vector<int> pos, neg;
+
+    // Separate positive and negative numbers
+    for (int x : nums)
+    {
+        if (x >= 0)
+            pos.push_back(x);
+        else
+            neg.push_back(x);
+    }
+
+    // Merge in alternating order
+    vector<int> res;
+    for (int i = 0; i < nums.size() / 2; i++)
+    {
+        res.push_back(pos[i]); // Place positive at even index
+        res.push_back(neg[i]); // Place negative at odd index
+    }
+
+    return res;
+}
+```
+
+### Approach 2: Using Single Result Array (Optimal)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(n)
+
+#### Logic
+
+1. Create a result array of the same size as input
+2. Maintain two pointers:
+   - `pos`: points to even indices (0, 2, 4, ...) for positive numbers
+   - `neg`: points to odd indices (1, 3, 5, ...) for negative numbers
+3. In a single pass through the array, place positive and negative numbers at their respective positions
+
+```cpp
+vector<int> rearrangeArray(vector<int> &nums)
+{
+    int n = nums.size();
+    vector<int> res(n);   // Output array
+    int pos = 0, neg = 1; // Even index for positives, odd for negatives
+
+    for (int i = 0; i < n; i++)
+    {
+        if (nums[i] < 0)
+        {
+            res[neg] = nums[i];
+            neg += 2;
+        }
+        else
+        {
+            res[pos] = nums[i];
+            pos += 2;
+        }
+    }
+    return res;
 }
 ```
 
