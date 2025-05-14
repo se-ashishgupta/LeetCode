@@ -19,7 +19,7 @@ Each topic folder contains:
 
 - `README.md` - Contains all problems related to that topic, with explanations and solutions
 - Solution files (e.g., `.cpp`, `.java`, `.py`) for implementations
-- In (number) shows leetcode porblem number
+- In (number) shows leetcode problem number
 - Additional resources or notes if applicable
 
 ## How to Use This Repository
