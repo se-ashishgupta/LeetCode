@@ -6,6 +6,7 @@
 - [2. Sort Colors(75)](#2-sort-colors)
 - [3. Majority Element(169)](#majority-element)
 - [4. Maximum Sum Subarray(53)](#maximum-sum-subarray)
+- [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
   <!-- Add more problems here as you solve them -->
   <!-- - [3. Problem Name](#3-problem-name) -->
 
@@ -440,6 +441,95 @@ int kadneAlgorithm(vector<int> &arr)
 | ------------------- | --------------- | ---------------- |
 | Naive (Brute Force) | O(n²)           | O(1)             |
 | Kadane's Algorithm  | O(n)            | O(1)             |
+
+---
+
+## Best Time to Buy and Sell Stock
+
+### Problem Statement
+
+Given an array of stock prices where each element represents the price of a stock on a specific day, find the maximum profit you can achieve by making a single buy and a single sell. If no profit can be made, return 0.
+
+### Examples
+
+```
+Example 1:
+Input: prices = [7, 1, 5, 3, 6, 4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+
+Example 2:
+Input: prices = [7, 6, 4, 3, 1]
+Output: 0
+Explanation: No transactions are done as the price keeps decreasing.
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(n²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Consider all possible pairs of buy and sell days where the buy day is before the sell day
+2. Calculate profit for each pair and keep track of the maximum profit
+
+```cpp
+int stockBuySellNaive(vector<int> &arr)
+{
+    int maxProfit = 0; // Initialize maxProfit to 0
+    int n = arr.size();
+
+    // Loop through all possible buy days
+    for (int i = 0; i < n; i++)
+    {
+        // Loop through all possible sell days after the buy day
+        for (int j = i + 1; j < n; j++)
+        {
+            // If selling on day j yields profit, calculate it
+            if (arr[j] > arr[i])
+            {
+                int profit = arr[j] - arr[i];       // Calculate profit
+                maxProfit = max(maxProfit, profit); // Update maxProfit if current profit is higher
+            }
+        }
+    }
+
+    return maxProfit; // Return the maximum profit found
+}
+```
+
+### Approach 2: Single Pass (Optimal)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Track the minimum price seen so far
+2. For each day, calculate potential profit if selling on that day (current price - minimum price seen)
+3. Update the maximum profit if the current profit is greater than the tracked maximum
+
+```cpp
+int stockBuySellEfficient(vector<int> &arr)
+{
+    int maxProfit = 0;   // Initialize maxProfit to 0
+    int minVal = arr[0]; // Initialize minVal as the price on the first day
+    int n = arr.size();
+
+    // Traverse the array from the second day
+    for (int i = 1; i < n; i++)
+    {
+        // Update minVal to the smallest stock price so far
+        minVal = min(minVal, arr[i]);
+
+        // Calculate profit if stock is sold on day i
+        maxProfit = max(arr[i] - minVal, maxProfit); // Update maxProfit if current profit is higher
+    }
+
+    return maxProfit; // Return the maximum profit found
+}
+```
 
 ---
 
