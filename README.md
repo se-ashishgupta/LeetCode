@@ -11,7 +11,7 @@ This repository contains implementations and explanations of various data struct
 - [Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
 - [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
 - [Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
-- [Rearrange Array Elements by Sign](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
+- [Rearrange Array Elements by Sign(2149)](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
 
 ## Structure
 
@@ -19,6 +19,7 @@ Each topic folder contains:
 
 - `README.md` - Contains all problems related to that topic, with explanations and solutions
 - Solution files (e.g., `.cpp`, `.java`, `.py`) for implementations
+- In (number) shows leetcode porblem number
 - Additional resources or notes if applicable
 
 ## How to Use This Repository
