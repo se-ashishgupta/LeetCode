@@ -6,8 +6,8 @@ This repository contains implementations and explanations of various data struct
 
 ### [Arrays](/Arrays/README.md)
 
-- [Two Sum(1)](/Arrays/README.md#1-two-sum) - Find two numbers in an array that add up to a target value
-- [Sort Color(75)](/Arrays/README.md#2-sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
+- [Two Sum(1)](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
+- [Sort Color(75)](/Arrays/README.md#sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
 - [Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
 - [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
 - [Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once

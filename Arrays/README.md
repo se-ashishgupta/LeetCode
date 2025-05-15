@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-- [1. Two Sum(1)](#1-two-sum)
-- [2. Sort Colors(75)](#2-sort-colors)
+- [1. Two Sum(1)](#two-sum)
+- [2. Sort Colors(75)](#sort-colors)
 - [3. Majority Element(169)](#majority-element)
 - [4. Maximum Sum Subarray(53)](#maximum-sum-subarray)
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
@@ -12,7 +12,7 @@
 
 ---
 
-## 1. Two Sum
+## Two Sum
 
 ### Problem Statement
 
@@ -94,7 +94,7 @@ vector<int> twoSum(vector<int> &arr, int target)
 
 ---
 
-## 2. Sort Colors
+## Sort Colors
 
 ### Problem Statement
 
