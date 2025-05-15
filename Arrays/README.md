@@ -8,6 +8,7 @@
 - [4. Maximum Sum Subarray(53)](#maximum-sum-subarray)
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
+- [7. Next Permutation(31)](#next-permutation)
 
 ---
 
@@ -620,6 +621,113 @@ vector<int> rearrangeArray(vector<int> &nums)
     return res;
 }
 ```
+
+---
+
+## Next Permutation
+
+### Problem Statement
+
+Implement **nextPermutation**, which rearranges numbers into the **lexicographically next greater permutation** of numbers. If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order). The replacement must be **in-place** and use only constant extra memory.
+
+### Examples
+
+```
+Example 1:
+Input: nums = [1,2,3]
+Output: [1,3,2]
+
+Example 2:
+Input: nums = [3,2,1]
+Output: [1,2,3]
+
+Example 3:
+Input: nums = [1,1,5]
+Output: [1,5,1]
+```
+
+### Approach 1: Brute Force (Not Practical)
+
+- **Time Complexity**: O(N!)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Generate all permutations of the array
+2. Sort them
+3. Return the one that comes just after the current permutation
+
+This approach is extremely inefficient for large arrays and not suitable for interviews.
+
+### Approach 2: Optimal Algorithm
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Traverse from the end and find the first index `idx` such that nums[idx] < nums[idx + 1] (This means the suffix after idx is in descending order)
+2. If no such index is found, the entire array is the highest permutation — reverse to get lowest
+3. Find the smallest element in the suffix that is greater than nums[idx]
+4. Swap them
+5. Reverse the suffix (to get the next smallest lexicographic permutation)
+
+```cpp
+void nextPermutation(vector<int> &nums)
+{
+    int n = nums.size();
+
+    // Step 1: Find the first decreasing element from the end
+    int idx = -1;
+    for (int i = n - 1; i > 0; i--)
+    {
+        if (nums[i] > nums[i - 1])
+        {
+            idx = i - 1;
+            break;
+        }
+    }
+
+    // Step 2: If no such index is found, array is in descending order
+    if (idx == -1)
+    {
+        reverse(begin(nums), end(nums));
+        return;
+    }
+
+    // Step 3: Find element just greater than nums[idx] from the end
+    int swap_idx = idx;
+    for (int i = n - 1; i > idx; i--)
+    {
+        if (nums[i] > nums[idx])
+        {
+            swap_idx = i;
+            break;
+        }
+    }
+
+    // Step 4: Swap and reverse the suffix
+    swap(nums[idx], nums[swap_idx]);
+    reverse(nums.begin() + idx + 1, nums.end());
+}
+```
+
+### Key Observations
+
+1. **Descending Order Property**:
+
+   - The suffix (rightmost part of the array) after `idx` is sorted in descending order
+   - This means the largest values are at the end, and no next greater permutation is possible unless we swap
+
+2. **Selecting the Smallest Larger Element**:
+   - Since the suffix is in descending order, the first element (from right to left) that is greater than nums[idx] is the smallest such element — making it the ideal candidate for the next permutation
+
+### Summary Table
+
+| Approach           | Time Complexity | Space Complexity |
+| ------------------ | --------------- | ---------------- |
+| Brute Force        | O(N!)           | O(N)             |
+| Optimal (In-Place) | O(N)            | O(1)             |
 
 ---
 

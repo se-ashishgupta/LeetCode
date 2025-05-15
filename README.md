@@ -12,6 +12,7 @@ This repository contains implementations and explanations of various data struct
 - [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
 - [Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
 - [Rearrange Array Elements by Sign(2149)](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
+- [Next Permutation(31)](/Arrays/README.md#next-permutation) - Find the lexicographically next greater permutation of numbers
 
 ## Structure
 
