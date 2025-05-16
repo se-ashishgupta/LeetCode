@@ -6,14 +6,14 @@ This repository contains implementations and explanations of various data struct
 
 ### [Arrays](/Arrays/README.md)
 
-- [Two Sum(1)](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
-- [Sort Color(75)](/Arrays/README.md#sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
-- [Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
-- [Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
-- [Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
-- [Rearrange Array Elements by Sign(2149)](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
-- [Next Permutation(31)](/Arrays/README.md#next-permutation) - Find the lexicographically next greater permutation of numbers
-- [Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Find number of continuous subarrays with sum equal to k
+- [1. Two Sum(1)](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
+- [2. Sort Color(75)](/Arrays/README.md#sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
+- [3. Majority Element(169)](/Arrays/README.md#majority-element) - Find the element that appears more than n/2 times in an array
+- [4. Maximum Sum Subarray(53)](/Arrays/README.md#maximum-sum-subarray) - Find the contiguous subarray with the largest sum
+- [5. Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
+- [6. Rearrange Array Elements by Sign(2149)](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
+- [7. Next Permutation(31)](/Arrays/README.md#next-permutation) - Find the lexicographically next greater permutation of numbers
+- [8. Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Find number of continuous subarrays with sum equal to k
 
 ## Structure
 
