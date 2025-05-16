@@ -9,6 +9,7 @@
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
+- [8. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
 
 ---
 
@@ -728,6 +729,108 @@ void nextPermutation(vector<int> &nums)
 | ------------------ | --------------- | ---------------- |
 | Brute Force        | O(N!)           | O(N)             |
 | Optimal (In-Place) | O(N)            | O(1)             |
+
+---
+
+## Subarray Sum Equals K
+
+### Problem Statement
+
+Given an array `nums` and an integer `k`, return the total number of continuous subarrays whose sum equals to `k`.
+
+### Example
+
+```
+Input: nums = [1, 2, 3, 4, 5], k = 5
+Output: 2
+Explanation: Subarrays [2, 3] and [5] have sum 5.
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Use two nested loops to consider all possible subarrays
+2. For each subarray, compute the sum and check if it equals `k`
+3. Increment the counter if the sum equals `k`
+
+```cpp
+int subArraySumEqualsKNaive(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int sum = 0;
+        for (int j = i; j < n; j++)
+        {
+            sum += nums[j];
+            if (sum == k)
+            {
+                res++; // Found a subarray with sum equal to k
+            }
+        }
+    }
+    return res;
+}
+```
+
+### Approach 2: Prefix Sum with HashMap (Optimal)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Use a hashmap to store prefix sums and their frequencies
+2. For each index, calculate the running prefix sum
+3. Check if (prefix_sum - k) exists in the map, which indicates a subarray with sum k ending at the current index
+4. Use the key insight: if the sum from index 0 to i is `sum`, and (sum - k) exists in the map, then there's a subarray ending at index i with sum k
+
+```cpp
+int subArraySumEqualsKEfficient(vector<int> &nums, int k)
+{
+    unordered_map<int, int> preSumMap; // Stores {prefix sum -> count of occurrences}
+    int res = 0;
+    int sum = 0;      // Running sum
+    preSumMap[0] = 1; // To handle subarrays starting from index 0
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        sum += nums[i]; // Update running sum
+
+        int rem = sum - k; // Check if (sum - k) exists in the map
+
+        if (preSumMap.find(rem) != preSumMap.end())
+        {
+            res += preSumMap[rem]; // Add the count of occurrences of (sum - k)
+        }
+
+        preSumMap[sum]++; // Increment the count of the current prefix sum
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach            | Time Complexity | Space Complexity |
+| ------------------- | --------------- | ---------------- |
+| Brute Force (Naive) | O(N²)           | O(1)             |
+| Optimal (Hashmap)   | O(N)            | O(N)             |
+
+### Related Problems
+
+- Contiguous Array (LeetCode)
+- Subarrays with K Different Integers (LeetCode)
+- Count Number of Nice Subarrays (LeetCode)
+- Binary Subarrays With Sum (LeetCode)
+- Subarray Product Less Than K (LeetCode)
+- Count Subarrays Where Max Element Appears at Least K Times (LeetCode)
 
 ---
 
