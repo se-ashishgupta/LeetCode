@@ -10,6 +10,7 @@
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
 - [8. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
+- [9. Contiguous Array(525)](#contiguous-array)
 
 ---
 
@@ -831,6 +832,122 @@ int subArraySumEqualsKEfficient(vector<int> &nums, int k)
 - Binary Subarrays With Sum (LeetCode)
 - Subarray Product Less Than K (LeetCode)
 - Count Subarrays Where Max Element Appears at Least K Times (LeetCode)
+
+---
+
+## Contiguous Array
+
+### Problem Statement
+
+Given a binary array `nums`, find the maximum length of a contiguous subarray with an equal number of 0s and 1s.
+
+### Example
+
+```
+Input: nums = [0, 1, 1, 1, 1, 1, 0, 0, 0]
+Output: 6
+Explanation: The subarray [1, 1, 1, 0, 0, 0] has equal number of 0s and 1s.
+```
+
+### Approach 1: Naive Approach
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Check every possible subarray
+2. Count 0s and 1s for each subarray
+3. If counts are equal, update maximum length
+
+```cpp
+int contiguousArrayNaive(vector<int> &nums)
+{
+    int n = nums.size();
+    int res = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int oneCount = 0;
+        int zeroCount = 0;
+
+        for (int j = i; j < n; j++)
+        {
+            if (nums[j] == 0)
+                zeroCount++;
+            else
+                oneCount++;
+
+            if (oneCount == zeroCount)
+            {
+                res = max(res, j - i + 1);
+            }
+        }
+    }
+
+    return res;
+}
+```
+
+### Approach 2: Prefix Sum with Hashmap (Optimal)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Replace all 0s with -1s (key insight!)
+2. Calculate running sum
+3. If we see the same sum twice, it means the subarray between these positions has a sum of 0
+4. A sum of 0 means equal numbers of -1s and 1s (which implies equal numbers of original 0s and 1s)
+5. Use a hashmap to store the first occurrence of each sum
+
+```cpp
+int contiguousArrayEfficient(vector<int> &nums)
+{
+    int n = nums.size();
+    int res = 0;
+
+    // Step 1: Convert 0s to -1s
+    vector<int> modifiedNums = nums; // Create a copy to avoid modifying original
+    for (int i = 0; i < n; i++)
+    {
+        if (modifiedNums[i] == 0)
+            modifiedNums[i] = -1;
+    }
+
+    int sum = 0;
+    unordered_map<int, int> countMap;
+    countMap[0] = -1; // To handle sum = 0 case at beginning
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += modifiedNums[i];
+
+        if (countMap.find(sum) != countMap.end())
+        {
+            res = max(res, i - countMap[sum]); // Subarray with sum = 0 found
+        }
+        else
+        {
+            countMap[sum] = i; // Store first occurrence
+        }
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach        | Time Complexity | Space Complexity |
+| --------------- | --------------- | ---------------- |
+| Naive           | O(N²)           | O(1)             |
+| Optimized (Map) | O(N)            | O(N)             |
+
+### LeetCode Problem Link
+
+[Contiguous Array](https://leetcode.com/problems/contiguous-array/)
 
 ---
 
