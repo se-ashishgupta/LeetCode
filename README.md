@@ -4,7 +4,7 @@ This repository contains implementations and explanations of various data struct
 
 ## Topics
 
-### [Arrays](/Arrays/README.md)
+- ### [Arrays](/Arrays/README.md)
 
 - [1. Two Sum(1)](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
 - [2. Sort Color(75)](/Arrays/README.md#sort-colors) - Sort an array of 0s, 1s, and 2s in-place (Dutch National Flag problem)
