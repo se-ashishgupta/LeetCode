@@ -1,4 +1,4 @@
-# Coding Problems Collection
+# Arrays Coding Problems Collection
 
 ## Table of Contents
 
@@ -10,7 +10,7 @@
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
 
-#### Hash Table and Prefix Sum
+##### Hash Table and Prefix Sum
 
 - [8. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
 - [9. Contiguous Array(525)](#contiguous-array)
