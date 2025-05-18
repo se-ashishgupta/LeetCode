@@ -13,6 +13,9 @@ This repository contains implementations and explanations of various data struct
 - [5. Best Time to Buy and Sell Stock(121)](/Arrays/README.md#best-time-to-buy-and-sell-stock) - Find maximum profit by buying and selling a stock once
 - [6. Rearrange Array Elements by Sign(2149)](/Arrays/README.md#rearrange-array-elements-by-sign) - Arrange array with alternating positive and negative integers
 - [7. Next Permutation(31)](/Arrays/README.md#next-permutation) - Find the lexicographically next greater permutation of numbers
+
+##### Hash Table and Prefix Sum
+
 - [8. Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Find number of continuous subarrays with sum equal to k
 - [9. Contiguous Array(525)](/Arrays/README.md#contiguous-array) - Find the maximum length subarray with equal number of 0s and 1s
 
