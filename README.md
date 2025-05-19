@@ -15,6 +15,7 @@ This repository contains implementations and explanations of various data struct
 - [7. Next Permutation(31)](/Arrays/README.md#next-permutation) - Find the lexicographically next greater permutation of numbers
 - [8. Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Find number of continuous subarrays with sum equal to k
 - [9. Contiguous Array(525)](/Arrays/README.md#contiguous-array) - Find the maximum length subarray with equal number of 0s and 1s
+- [10. Count Number of Nice Subarrays(1248)](/Arrays/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
 
 ### [Sliding Window](/Sliding-Window/README.md)
 

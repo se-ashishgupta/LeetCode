@@ -14,6 +14,7 @@
 
 - [8. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
 - [9. Contiguous Array(525)](#contiguous-array)
+- [10. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
 
 ---
 
@@ -940,6 +941,105 @@ int contiguousArrayEfficient(vector<int> &nums)
     return res;
 }
 ```
+
+---
+
+## Count Number of Nice Subarrays
+
+### Problem Statement
+
+Given an array of integers `nums` and an integer `k`, return the number of nice subarrays.
+
+A **nice subarray** is a subarray that contains exactly `k` odd numbers.
+
+### Example
+
+```
+Input: nums = [1,1,2,1,1], k = 3
+Output: 2
+Explanation: The nice subarrays are [1,1,2,1] and [1,2,1,1]
+```
+
+### Approach 1: Naive (Brute Force)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Generate all possible subarrays using two nested loops
+2. For each subarray, count the number of odd integers
+3. If the count equals k, increment the result counter
+
+```cpp
+int numberOfSubarraysNaive(vector<int> &nums, int k)
+{
+    int count = 0;
+    int n = nums.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        int oddCount = 0;
+        for (int j = i; j < n; j++)
+        {
+            if (nums[j] & 1)
+                oddCount++; // Check if odd
+            if (oddCount == k)
+                count++;
+        }
+    }
+
+    return count;
+}
+```
+
+### Approach 2: Prefix Sum with HashMap (Optimal)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Convert the problem to finding subarrays with sum k:
+   - Map each even number to 0
+   - Map each odd number to 1
+2. Keep track of the prefix sum (running count of odd numbers)
+3. Use a hashmap to store frequency of each prefix sum
+4. For each position, check if (currentSum - k) exists in the hashmap
+   - If yes, add its frequency to the answer
+
+```cpp
+int numberOfSubarraysEfficient(vector<int> &nums, int k)
+{
+    int count = 0;
+    int sum = 0;
+    unordered_map<int, int> prefSum;
+    prefSum[0] = 1; // to handle the case where sum == k directly
+
+    for (int x : nums)
+    {
+        sum += (x & 1); // add 1 if x is odd, else 0
+
+        int rem = sum - k;
+
+        if (prefSum.find(rem) != prefSum.end())
+            count += prefSum[rem];
+
+        prefSum[sum]++;
+    }
+
+    return count;
+}
+```
+
+### Complexity Comparison
+
+| Approach             | Time Complexity | Space Complexity |
+| -------------------- | --------------- | ---------------- |
+| Naive (Brute Force)  | O(N²)           | O(1)             |
+| Prefix Sum + HashMap | O(N)            | O(N)             |
+
+---
 
 ### Summary Table
 
