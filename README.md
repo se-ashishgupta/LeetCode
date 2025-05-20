@@ -20,6 +20,7 @@ This repository contains implementations and explanations of various data struct
 ### [Sliding Window](/Sliding-Window/README.md)
 
 - [1. Subarrays with K Different Integers(992)](/Sliding-Window/README.md#subarrays-with-k-different-integers) - Count subarrays with exactly k distinct integers
+- [2. Count Number of Nice Subarrays(1248)](/Sliding-Window/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
 
 ## Structure
 
