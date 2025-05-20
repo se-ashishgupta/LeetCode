@@ -2,10 +2,47 @@
 
 ## Table of Contents
 
+### Patterns
+
+- [1. At Most K Subarrays](#at-most-k-subarrays)
+
+### Problems
+
 - [1. Subarrays with K Different Integers(992)](#subarrays-with-k-different-integers)
 - [2. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
+  <!-- Add more problems here as you solve them -->
+  <!-- - [2. Problem Name](#2-problem-name) -->
+  <!-- - [3. Problem Name](#3-problem-name) -->
 
 ---
+
+# Patterns
+
+## At Most K Subarrays
+
+**"At Most K" Subarrays** (also called the **Variable Sliding Window** or **Prefix Inclusion-Exclusion Technique**)
+
+🔹 **Core Idea:**
+To count subarrays with **exactly** `K` distinct properties (like odd numbers, distinct elements, etc.), you compute:
+ExactlyK(k) = AtMost(k) − AtMost(k−1)
+
+This transforms a difficult **exact count** problem into two simpler **at-most** problems.
+
+🔹 **Where This Pattern Applies:**
+
+- Counting subarrays with **exactly K odd numbers**
+- Counting subarrays with **exactly K distinct integers**
+- Problems where **"exactly K"** conditions are hard to maintain in one pass
+
+🔹 **Famous Leetcode Examples:**
+
+- Leetcode 1248: Count Number of Nice Subarrays
+- Leetcode 992: Subarrays with K Different Integers
+- Leetcode 340: Longest Substring with At Most K Distinct Characters
+
+---
+
+# Problems
 
 ## Subarrays with K Different Integers
 
