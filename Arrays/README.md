@@ -9,6 +9,7 @@
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
+- [8. Set Matrix Zeroes(73)](#set-matrix-zeroes)
 
 ##### Hash Table and Prefix Sum
 
@@ -1083,6 +1084,207 @@ int numberOfSubarraysEfficientSecond(vector<int> &nums, int k) {
 | Naive                      | O(N²)           | O(1)             |
 | Efficient (Prefix Sum)     | O(N)            | O(N)             |
 | Efficient (Sliding Window) | O(N)            | O(1)             |
+
+---
+
+## Set Matrix Zeroes
+
+### Problem Statement
+
+Given an m x n matrix, if an element is 0, set its entire row and column to 0 in-place.
+
+**Leetcode**: https://leetcode.com/problems/set-matrix-zeroes/
+
+### Example
+
+```
+Input:
+[
+ [0,1,2,0],
+ [3,4,5,2],
+ [1,3,1,5]
+]
+
+Output:
+[
+ [0,0,0,0],
+ [0,4,5,0],
+ [0,3,1,0]
+]
+```
+
+### Approach 1: Brute Force (Extra Matrix Copy)
+
+- **Time Complexity**: O(m\*n)
+- **Space Complexity**: O(m\*n)
+
+#### Logic
+
+1. Copy the original matrix
+2. If matrix[i][j] == 0, set all cells in row i and column j of the copy to 0
+
+```cpp
+vector<vector<int>> setMatrixZeroesNaive(vector<vector<int>> &matrix)
+{
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+    vector<vector<int>> result = matrix;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (matrix[i][j] == 0)
+            {
+                for (int k = 0; k < rows; k++)
+                    result[k][j] = 0;
+                for (int k = 0; k < cols; k++)
+                    result[i][k] = 0;
+            }
+        }
+    }
+
+    return result;
+}
+```
+
+### Approach 2: Better (Use 2 Arrays)
+
+- **Time Complexity**: O(m\*n)
+- **Space Complexity**: O(m+n)
+
+#### Logic
+
+1. Use two arrays to mark which rows and columns should be zero
+2. First pass: mark rows and columns that contain zeros
+3. Second pass: set matrix cells to zero based on the marked rows/columns
+
+```cpp
+vector<vector<int>> setMatrixZeroesNaiveSecond(vector<vector<int>> &matrix)
+{
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    vector<int> row(rows, 1);
+    vector<int> col(cols, 1);
+
+    // Mark the rows and columns that should be zero
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (matrix[i][j] == 0)
+            {
+                row[i] = 0;
+                col[j] = 0;
+            }
+        }
+    }
+
+    // Apply the zeroing
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            if (row[i] == 0 || col[j] == 0)
+            {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    return matrix;
+}
+```
+
+### Approach 3: Optimal (In-place using First Row/Column as Markers)
+
+- **Time Complexity**: O(m\*n)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Use the first row and first column of the matrix itself as markers
+2. Use two boolean flags to track if the first row and first column originally contain zeros
+3. Process the matrix (excluding first row/column) and mark zeros in first row/column
+4. Set zeros based on the markers in first row/column
+5. Finally handle the first row and column based on the flags
+
+```cpp
+void setMatrixZeroesOptimal(vector<vector<int>> &matrix)
+{
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+    bool firstRowZero = false, firstColZero = false;
+
+    // Check if first row needs to be zero
+    for (int j = 0; j < cols; j++)
+    {
+        if (matrix[0][j] == 0)
+        {
+            firstRowZero = true;
+            break;
+        }
+    }
+
+    // Check if first column needs to be zero
+    for (int i = 0; i < rows; i++)
+    {
+        if (matrix[i][0] == 0)
+        {
+            firstColZero = true;
+            break;
+        }
+    }
+
+    // Use first row and column as flags
+    for (int i = 1; i < rows; i++)
+    {
+        for (int j = 1; j < cols; j++)
+        {
+            if (matrix[i][j] == 0)
+            {
+                matrix[i][0] = 0;
+                matrix[0][j] = 0;
+            }
+        }
+    }
+
+    // Zero cells based on flags
+    for (int i = 1; i < rows; i++)
+    {
+        for (int j = 1; j < cols; j++)
+        {
+            if (matrix[i][0] == 0 || matrix[0][j] == 0)
+            {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    // Zero the first row if needed
+    if (firstRowZero)
+    {
+        for (int j = 0; j < cols; j++)
+            matrix[0][j] = 0;
+    }
+
+    // Zero the first column if needed
+    if (firstColZero)
+    {
+        for (int i = 0; i < rows; i++)
+            matrix[i][0] = 0;
+    }
+}
+```
+
+### Summary Table
+
+| Approach            | Time Complexity | Space Complexity |
+| ------------------- | --------------- | ---------------- |
+| Naive (copy matrix) | O(m\*n)         | O(m\*n)          |
+| Better (2 arrays)   | O(m\*n)         | O(m+n)           |
+| Optimal (in-place)  | O(m\*n)         | O(1)             |
 
 ---
 

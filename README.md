@@ -16,6 +16,7 @@ This repository contains implementations and explanations of various data struct
 - [8. Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Find number of continuous subarrays with sum equal to k
 - [9. Contiguous Array(525)](/Arrays/README.md#contiguous-array) - Find the maximum length subarray with equal number of 0s and 1s
 - [10. Count Number of Nice Subarrays(1248)](/Arrays/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
+- [11. Set Matrix Zeroes(73)](/Arrays/README.md#set-matrix-zeroes) - Set entire row and column to zero if an element is 0
 
 ### [Sliding Window](/Sliding-Window/README.md)
 
