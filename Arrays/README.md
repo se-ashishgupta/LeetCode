@@ -9,13 +9,17 @@
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
-- [8. Set Matrix Zeroes(73)](#set-matrix-zeroes)
+
+##### 2D Array
+
+- [1. Set Matrix Zeroes(73)](#set-matrix-zeroes)
+- [2. Rotate Image(48)](#rotate-image)
 
 ##### Hash Table and Prefix Sum
 
-- [8. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
-- [9. Contiguous Array(525)](#contiguous-array)
-- [10. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
+- [1. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
+- [2. Contiguous Array(525)](#contiguous-array)
+- [3. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
 
 ---
 
@@ -1285,6 +1289,100 @@ void setMatrixZeroesOptimal(vector<vector<int>> &matrix)
 | Naive (copy matrix) | O(m\*n)         | O(m\*n)          |
 | Better (2 arrays)   | O(m\*n)         | O(m+n)           |
 | Optimal (in-place)  | O(m\*n)         | O(1)             |
+
+---
+
+## Rotate Image
+
+### Problem Statement
+
+Given an N x N 2D matrix representing an image, rotate the image by 90 degrees (clockwise) **in-place**.
+
+### Example
+
+```
+Input:
+[
+ [1, 2, 3],
+ [4, 5, 6],
+ [7, 8, 9]
+]
+
+Output:
+[
+ [7, 4, 1],
+ [8, 5, 2],
+ [9, 6, 3]
+]
+```
+
+### Approach 1: Naive (Extra Space)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(N²)
+
+#### Logic
+
+1. Create a new matrix of the same size
+2. Fill elements from original matrix such that: `result[j][n - i - 1] = matrix[i][j]`
+3. This requires extra space but is straightforward
+
+```cpp
+vector<vector<int>> RotateImageNaive(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+    vector<vector<int>> rotated(n, vector<int>(n));
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            rotated[j][n - 1 - i] = matrix[i][j];
+        }
+    }
+
+    return rotated;
+}
+```
+
+### Approach 2: In-place Rotation (Optimal)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. **Transpose the matrix**: Swap elements across the diagonal (`matrix[i][j] ↔ matrix[j][i]`)
+2. **Reverse each row**: This completes the 90-degree clockwise rotation
+
+```cpp
+void RotateImageEfficient(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+
+    // Step 1: Transpose the matrix (swap across diagonal)
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i; j < n; j++)
+        {
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+
+    // Step 2: Reverse each row
+    for (int i = 0; i < n; i++)
+    {
+        reverse(matrix[i].begin(), matrix[i].end());
+    }
+}
+```
+
+### Summary Table
+
+| Approach             | Time Complexity | Space Complexity |
+| -------------------- | --------------- | ---------------- |
+| Naive                | O(N²)           | O(N²)            |
+| Efficient (In-place) | O(N²)           | O(1)             |
 
 ---
 

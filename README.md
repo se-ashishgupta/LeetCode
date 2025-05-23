@@ -17,6 +17,7 @@ This repository contains implementations and explanations of various data struct
 - [9. Contiguous Array(525)](/Arrays/README.md#contiguous-array) - Find the maximum length subarray with equal number of 0s and 1s
 - [10. Count Number of Nice Subarrays(1248)](/Arrays/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
 - [11. Set Matrix Zeroes(73)](/Arrays/README.md#set-matrix-zeroes) - Set entire row and column to zero if an element is 0
+- [12. Rotate Image(48)](/Arrays/README.md#rotate-image) - Rotate an N x N matrix by 90 degrees clockwise in-place
 
 ### [Sliding Window](/Sliding-Window/README.md)
 
