@@ -18,6 +18,7 @@ This repository contains implementations and explanations of various data struct
 - [10. Count Number of Nice Subarrays(1248)](/Arrays/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
 - [11. Set Matrix Zeroes(73)](/Arrays/README.md#set-matrix-zeroes) - Set entire row and column to zero if an element is 0
 - [12. Rotate Image(48)](/Arrays/README.md#rotate-image) - Rotate an N x N matrix by 90 degrees clockwise in-place
+- [13. Spiral Matrix(54)](/Arrays/README.md#spiral-matrix) - Print a 2D matrix in spiral order using four pointers approach
 
 ### [Sliding Window](/Sliding-Window/README.md)
 

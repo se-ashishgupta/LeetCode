@@ -14,6 +14,7 @@
 
 - [1. Set Matrix Zeroes(73)](#set-matrix-zeroes)
 - [2. Rotate Image(48)](#rotate-image)
+- [3. Spiral Matrix(54)](#spiral-matrix)
 
 ##### Hash Table and Prefix Sum
 
@@ -1383,6 +1384,124 @@ void RotateImageEfficient(vector<vector<int>> &matrix)
 | -------------------- | --------------- | ---------------- |
 | Naive                | O(N²)           | O(N²)            |
 | Efficient (In-place) | O(N²)           | O(1)             |
+
+---
+
+## Spiral Matrix
+
+### Problem Statement
+
+Print a given 2D matrix in a spiral order.
+
+### Example
+
+```
+Input:
+[
+ [1, 2, 3],
+ [4, 5, 6],
+ [7, 8, 9]
+]
+
+Output: 1 2 3 6 9 8 7 4 5
+```
+
+### Approach 1: Naive (Using Visited Matrix)
+
+- **Time Complexity**: O(N \* M)
+- **Space Complexity**: O(N \* M)
+
+#### Logic
+
+Use a visited matrix and simulate directions manually. This approach is inefficient due to extra space usage.
+
+### Approach 2: Four Pointers (Optimal)
+
+- **Time Complexity**: O(N \* M)
+- **Space Complexity**: O(1) extra space (excluding result)
+
+#### Logic
+
+1. Use four pointers to represent current boundaries: top, bottom, left, and right
+2. Traverse the matrix in 4 directions cyclically:
+   - Left to Right → (top row)
+   - Top to Bottom ↓ (rightmost column)
+   - Right to Left ← (bottom row)
+   - Bottom to Top ↑ (leftmost column)
+3. After completing each direction, adjust the boundaries accordingly
+4. Use a direction variable (0 to 3) to keep track of current traversal direction
+5. Continue until all boundaries are crossed
+
+```cpp
+vector<int> SpiralMatrixEfficient(vector<vector<int>> &matrix)
+{
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+    vector<int> res;
+
+    int top = 0, left = 0;
+    int bottom = rows - 1, right = cols - 1;
+
+    int dir = 0;
+
+    // dir = 0 -- left -> right
+    // dir = 1 -- top -> down
+    // dir = 2 -- right -> left
+    // dir = 3 -- down -> top
+
+    while (top <= bottom && left <= right)
+    {
+        if (dir == 0)
+        {
+            // Left to Right
+            for (int i = left; i <= right; i++)
+            {
+                res.push_back(matrix[top][i]);
+            }
+            top++;
+        }
+        else if (dir == 1)
+        {
+            // Top to Bottom
+            for (int i = top; i <= bottom; i++)
+            {
+                res.push_back(matrix[i][right]);
+            }
+            right--;
+        }
+        else if (dir == 2)
+        {
+            // Right to Left
+            for (int i = right; i >= left; i--)
+            {
+                res.push_back(matrix[bottom][i]);
+            }
+            bottom--;
+        }
+        else if (dir == 3)
+        {
+            // Bottom to Top
+            for (int i = bottom; i >= top; i--)
+            {
+                res.push_back(matrix[i][left]);
+            }
+            left++;
+        }
+
+        // Move to next direction
+        dir = (dir + 1) % 4;
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach               | Time Complexity | Space Complexity |
+| ---------------------- | --------------- | ---------------- |
+| Naive (visited)        | O(N \* M)       | O(N \* M)        |
+| Efficient (4 Pointers) | O(N \* M)       | O(1) extra       |
 
 ---
 
