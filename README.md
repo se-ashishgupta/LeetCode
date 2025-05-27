@@ -4,6 +4,12 @@ This repository contains implementations and explanations of various data struct
 
 ## Topics
 
+### [Math](/Sliding-Window/README.md)
+
+- [1. Divisibility Difference(2894)](/Math/README.md#divisibility-difference) - Find the difference between sums of divisible and non-divisible numbers
+
+---
+
 ### [Arrays](/Arrays/README.md)
 
 - [1. Two Sum(1)](/Arrays/README.md#two-sum) - Find two numbers in an array that add up to a target value
@@ -20,10 +26,14 @@ This repository contains implementations and explanations of various data struct
 - [12. Rotate Image(48)](/Arrays/README.md#rotate-image) - Rotate an N x N matrix by 90 degrees clockwise in-place
 - [13. Spiral Matrix(54)](/Arrays/README.md#spiral-matrix) - Print a 2D matrix in spiral order using four pointers approach
 
+---
+
 ### [Sliding Window](/Sliding-Window/README.md)
 
 - [1. Subarrays with K Different Integers(992)](/Sliding-Window/README.md#subarrays-with-k-different-integers) - Count subarrays with exactly k distinct integers
 - [2. Count Number of Nice Subarrays(1248)](/Sliding-Window/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
+
+---
 
 ## Structure
 
