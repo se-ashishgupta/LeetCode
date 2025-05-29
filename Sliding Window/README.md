@@ -10,9 +10,7 @@
 
 - [1. Subarrays with K Different Integers(992)](#subarrays-with-k-different-integers)
 - [2. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
-  <!-- Add more problems here as you solve them -->
-  <!-- - [2. Problem Name](#2-problem-name) -->
-  <!-- - [3. Problem Name](#3-problem-name) -->
+- [3. Max Consecutive Ones III(1004)](#max-consecutive-ones-iii)
 
 ---
 
@@ -278,6 +276,102 @@ int numberOfSubarraysEfficientSecond(vector<int> &nums, int k) {
 | Naive                      | O(N²)           | O(1)             |
 | Efficient (Prefix Sum)     | O(N)            | O(N)             |
 | Efficient (Sliding Window) | O(N)            | O(1)             |
+
+---
+
+## Max Consecutive Ones III
+
+### Problem Statement
+
+Given a binary array `nums`, you can flip at most `k` 0s to 1s. Return the maximum number of consecutive 1s in the array.
+
+### Example
+
+```
+Input: nums = [1,1,0,0,1,1,1,0,1], k = 2
+Output: 8
+Explanation: Flip two 0s to get maximum 8 consecutive 1s.
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(n²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Try all possible subarrays
+2. Count zeros and ones in each subarray
+3. If the number of zeros is ≤ k, update the maximum length
+4. Return the maximum length found
+
+```cpp
+int maxConsecutiveOnesIIINaive(vector<int> &nums, int k) {
+    int n = nums.size();
+    int res = 0;
+
+    // Try every subarray
+    for (int i = 0; i < n; i++) {
+        int ones = 0, zeros = 0;
+
+        for (int j = i; j < n; j++) {
+            nums[j] == 0 ? zeros++ : ones++;
+
+            // Only consider subarrays with at most k zeroes
+            if (zeros <= k) {
+                res = max(res, ones + zeros);
+            }
+        }
+    }
+
+    return res;
+}
+```
+
+### Approach 2: Sliding Window (Optimal)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Maintain a sliding window [i...j] with at most `k` zeros
+2. Expand the right boundary (j), count zeros and ones
+3. If zeros exceed k, shrink from the left (i++) until zeros ≤ k
+4. Track the maximum window size throughout the process
+
+```cpp
+int maxConsecutiveOnesIIIEfficient(vector<int> &nums, int k) {
+    int n = nums.size();
+    int i = 0, j = 0;  // window boundaries
+    int ones = 0, zeros = 0;
+    int res = 0;
+
+    // Sliding window
+    while (j < n) {
+        nums[j] == 0 ? zeros++ : ones++;
+
+        // Shrink window until zeros <= k
+        while (zeros > k) {
+            nums[i] == 0 ? zeros-- : ones--;
+            i++;
+        }
+
+        // Update max window size
+        res = max(res, ones + zeros);
+        j++;
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach                 | Time Complexity | Space Complexity |
+| ------------------------ | --------------- | ---------------- |
+| Naive (Brute Force)      | O(n²)           | O(1)             |
+| Sliding Window (Optimal) | O(n)            | O(1)             |
 
 ---
 

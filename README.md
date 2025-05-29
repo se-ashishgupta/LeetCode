@@ -32,6 +32,7 @@ This repository contains implementations and explanations of various data struct
 
 - [1. Subarrays with K Different Integers(992)](/Sliding-Window/README.md#subarrays-with-k-different-integers) - Count subarrays with exactly k distinct integers
 - [2. Count Number of Nice Subarrays(1248)](/Sliding-Window/README.md#count-number-of-nice-subarrays) - Count subarrays with exactly k odd numbers
+- [3. Max Consecutive Ones III(1004)](/Arrays/README.md#max-consecutive-ones-iii) - Find maximum consecutive 1s after flipping at most k zeros
 
 ---
 
