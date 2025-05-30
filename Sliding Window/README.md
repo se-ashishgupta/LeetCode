@@ -11,6 +11,7 @@
 - [1. Subarrays with K Different Integers(992)](#subarrays-with-k-different-integers)
 - [2. Count Number of Nice Subarrays(1248)](#count-number-of-nice-subarrays)
 - [3. Max Consecutive Ones III(1004)](#max-consecutive-ones-iii)
+- [4. Binary Subarrays With Sum(930)](#binary-subarrays-with-sum)
 
 ---
 
@@ -372,6 +373,152 @@ int maxConsecutiveOnesIIIEfficient(vector<int> &nums, int k) {
 | ------------------------ | --------------- | ---------------- |
 | Naive (Brute Force)      | O(n²)           | O(1)             |
 | Sliding Window (Optimal) | O(n)            | O(1)             |
+
+---
+
+## Binary Subarrays With Sum
+
+### Problem Statement
+
+Given a binary array `nums` and an integer `goal`, return the number of non-empty subarrays with a sum equal to `goal`. A subarray is a contiguous part of the array.
+
+### Examples
+
+```
+Example 1:
+Input: nums = [1,0,1,0,1], goal = 2
+Output: 4
+
+Example 2:
+Input: nums = [0,0,0,0,0], goal = 0
+Output: 15
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+Use two nested loops to calculate sum of all subarrays and count how many are equal to `goal`.
+
+```cpp
+int numSubarraysWithSumNaive(vector<int> &nums, int goal)
+{
+    int res = 0;
+    int n = nums.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        int sum = 0;
+        for (int j = i; j < n; j++)
+        {
+            sum += nums[j];
+            if (sum == goal)
+            {
+                res++;
+            }
+        }
+    }
+
+    return res;
+}
+```
+
+### Approach 2: Prefix Sum + HashMap
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Use prefix sum technique with a hashmap to store frequencies of prefix sums
+2. For each position, if `sum - goal` was seen before, we found subarrays that sum to `goal`
+3. Initialize hashmap with `mp[0] = 1` to handle exact matches from index 0
+
+```cpp
+int numSubarraysWithSumEfficient(vector<int> &nums, int goal)
+{
+    int res = 0, sum = 0;
+    unordered_map<int, int> mp;
+    mp[0] = 1; // to handle exact match from index 0
+
+    for (int num : nums)
+    {
+        sum += num;
+        int rem = sum - goal;
+
+        if (mp.find(rem) != mp.end())
+        {
+            res += mp[rem];
+        }
+
+        mp[sum]++;
+    }
+
+    return res;
+}
+```
+
+### Approach 3: Sliding Window (Binary Arrays Only)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. For binary arrays only: Number of subarrays with exact sum `goal` = Number of subarrays with at most `goal` 1s - Number of subarrays with at most `goal - 1` 1s
+2. Use sliding window to count subarrays with at most K ones
+3. Handle edge case when goal = 0
+
+```cpp
+int numSubarraysWithSumAtMost(vector<int> &nums, int goal)
+{
+    if (goal < 0)
+        return 0;
+
+    int res = 0, countOne = 0, i = 0;
+
+    for (int j = 0; j < nums.size(); j++)
+    {
+        if (nums[j] == 1)
+            countOne++;
+
+        while (countOne > goal)
+        {
+            if (nums[i] == 1)
+                countOne--;
+            i++;
+        }
+
+        res += j - i + 1;
+    }
+
+    return res;
+}
+
+// Main function usage for sliding window approach
+int numSubarraysWithSum(vector<int> &nums, int goal)
+{
+    if (goal == 0)
+    {
+        return numSubarraysWithSumAtMost(nums, goal);
+    }
+    else
+    {
+        return numSubarraysWithSumAtMost(nums, goal) - numSubarraysWithSumAtMost(nums, goal - 1);
+    }
+}
+```
+
+### Summary Table
+
+| Approach                       | Time Complexity | Space Complexity | Notes                |
+| ------------------------------ | --------------- | ---------------- | -------------------- |
+| Brute Force                    | O(N²)           | O(1)             | Checks all subarrays |
+| Prefix Sum + HashMap           | O(N)            | O(N)             | General case         |
+| Sliding Window (Binary Arrays) | O(N)            | O(1)             | Only for binary nums |
 
 ---
 
