@@ -53,7 +53,7 @@ Optimized Approach:
 1. Total sum of first n natural numbers = n * (n + 1) / 2
 2. Sum of numbers divisible by m up to n is:
     - Let count = floor(n / m)
-    - Sum = m * (count * (count + 1)) / 2 (Sum of AP with common difference m)
+    - Sum = m * (count * (count + 1)) / 2 (Sum of AP with common difference m  = m + 2m + 3m + 4m + .... + km, where k = floor(n/m))
 3. Non-divisible sum = total sum - divisible sum
 4. Return non-divisible sum - divisible sum
 

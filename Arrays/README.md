@@ -9,6 +9,7 @@
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
+- [8. Move Zeros to End](#move-zeros-to-end)
 
 ##### 2D Array
 
@@ -1505,41 +1506,71 @@ vector<int> SpiralMatrixEfficient(vector<vector<int>> &matrix)
 
 ---
 
-<!-- Template for adding new problems -->
-<!--
-## [Problem Number]. [Problem Name]
+## Move Zeros to End
 
 ### Problem Statement
-[Describe the problem here]
+
+Given an array, write a function to move all zeros to the end of the array while maintaining the relative order of the non-zero elements.
 
 ### Example
+
 ```
-Input:
-Output:
-Explanation:
+Input:  [8, 5, 0, 10, 0, 20]
+Output: [8, 5, 10, 20, 0, 0]
 ```
 
-### Approach 1: [Approach Name]
-- **Time Complexity**:
-- **Space Complexity**:
+### Approach 1: Naive Approach (Extra Array)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(n)
 
 #### Logic
-1.
-2.
+
+1. Create a temporary array and store all non-zero elements in it
+2. Append zeros at the end of the temp array
+3. Copy it back to the original array
 
 ```cpp
-// Code here
+// Implementation would use extra space for temporary array
 ```
 
-### Approach 2: [Approach Name]
-- **Time Complexity**:
-- **Space Complexity**:
+### Approach 2: Optimized Approach (In-place)
+
+- **Time Complexity**: O(n)
+- **Space Complexity**: O(1)
 
 #### Logic
-1.
-2.
+
+1. Use a pointer `idx` to track the position of the next non-zero element
+2. Traverse the array:
+   - If current element is non-zero, swap it with `arr[idx]` and increment `idx`
+3. By the end, all non-zeros are at the start, and zeros at the end
 
 ```cpp
-// Code here
+void moveZerosToEnd(vector<int> &arr)
+{
+    int n = arr.size(); // Get the size of the array
+    int idx = 0;        // Pointer to track the position of the next non-zero element
+
+    // Step 1: Loop through the array
+    for (int i = 0; i < n; i++)
+    {
+        // Step 2: If the current element is non-zero, move it to the front
+        if (arr[i] != 0)
+        {
+            swap(arr[idx++], arr[i]); // Swap the element at 'idx' with the current element
+        }
+    }
+    // After the loop, all non-zero elements will be moved to the front of the array
+    // The zeros will naturally be pushed to the end due to the swaps
+}
 ```
--->
+
+### Summary Table
+
+| Approach             | Time Complexity | Space Complexity |
+| -------------------- | --------------- | ---------------- |
+| Naive (Extra array)  | O(n)            | O(n)             |
+| Optimized (In-place) | O(n)            | O(1)             |
+
+---
