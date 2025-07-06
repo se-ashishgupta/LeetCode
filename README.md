@@ -25,7 +25,7 @@ This repository contains implementations and explanations of various data struct
 - [11. Set Matrix Zeroes(73)](/Arrays/README.md#set-matrix-zeroes) - Set entire row and column to zero if an element is 0
 - [12. Rotate Image(48)](/Arrays/README.md#rotate-image) - Rotate an N x N matrix by 90 degrees clockwise in-place
 - [13. Spiral Matrix(54)](/Arrays/README.md#spiral-matrix) - Print a 2D matrix in spiral order using four pointers approach
-- [14. Move Zeros to End](/Arrays/README.md#move-zeros-to-end) - Move all zeros to the end while maintaining relative order of non-zero elements
+- [14. Move Zeros to End(283)](/Arrays/README.md#move-zeros-to-end) - Move all zeros to the end while maintaining relative order of non-zero elements
 
 ---
 

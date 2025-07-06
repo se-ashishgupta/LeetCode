@@ -9,7 +9,7 @@
 - [5. Best Time to Buy and Sell Stock(121)](#best-time-to-buy-and-sell-stock)
 - [6. Rearrange Array Elements by Sign(2149)](#rearrange-array-elements-by-sign)
 - [7. Next Permutation(31)](#next-permutation)
-- [8. Move Zeros to End](#move-zeros-to-end)
+- [8. Move Zeros to End(283)](#move-zeros-to-end)
 
 ##### 2D Array
 
