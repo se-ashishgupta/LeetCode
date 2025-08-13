@@ -26,6 +26,7 @@ This repository contains implementations and explanations of various data struct
 - [12. Rotate Image(48)](/Arrays/README.md#rotate-image) - Rotate an N x N matrix by 90 degrees clockwise in-place
 - [13. Spiral Matrix(54)](/Arrays/README.md#spiral-matrix) - Print a 2D matrix in spiral order using four pointers approach
 - [14. Move Zeros to End(283)](/Arrays/README.md#move-zeros-to-end) - Move all zeros to the end while maintaining relative order of non-zero elements
+- [15. Check If Array Is Sorted And Rotated(1752)](/Arrays/README.md#check-if-array-is-sorted-and-rotated) - Determine if array is sorted in ascending order and then rotated at some pivot
 
 ---
 
