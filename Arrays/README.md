@@ -11,6 +11,7 @@
 - [7. Next Permutation(31)](#next-permutation)
 - [8. Move Zeros to End(283)](#move-zeros-to-end)
 - [9. Check If Array Is Sorted And Rotated(1752)](#check-if-array-is-sorted-and-rotated)
+- [10. Best Time to Buy and Sell Stock II(122)](#best-time-to-buy-and-sell-stock-ii)
 
 ##### 2D Array
 
@@ -1664,6 +1665,112 @@ bool CheckIfArrayIsSortedAndRotated(vector<int> &nums)
 | ------------------ | --------------- | ---------------- |
 | Brute Force        | O(N²)           | O(N)             |
 | Optimal (In-Place) | O(N)            | O(1)             |
+
+---
+
+## Best Time to Buy and Sell Stock II
+
+### Problem Statement
+
+You are given an array `arr` where each element represents the stock price on a given day. You may complete as many transactions as you like (buy one and sell one share of the stock multiple times). However, you must sell the stock before you buy again. Your task is to find the maximum profit that can be made.
+
+### Examples
+
+```
+Example 1:
+Input: arr = [1, 5, 3, 8, 12]
+Output: 13
+Explanation:
+- Buy at 1, sell at 5 → Profit = 4
+- Buy at 3, sell at 12 → Profit = 9
+- Total Profit = 4 + 9 = 13
+
+Example 2:
+Input: arr = [7, 6, 4, 3, 1]
+Output: 0
+Explanation: Prices are always decreasing, so no transaction is done.
+
+Example 3:
+Input: arr = [7, 6, 4, 3, 10]
+Output: 7
+Explanation:
+- Buy at 3, sell at 10 → Profit = 7
+```
+
+### Approach 1: Naive (Recursive)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1) (excluding recursion stack)
+
+#### Logic
+
+1. Consider all possible buy-sell pairs (i < j) and calculate the profit for each
+2. Use recursion to explore:
+   - Not doing any transaction
+   - Doing a transaction from i to j and then solving the remaining subarray
+3. Return the maximum of all possibilities
+
+```cpp
+int stockBuySellIINaive(const vector<int> &arr)
+{
+    int n = arr.size();
+    int profit = 0;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j] > arr[i])
+            {
+                int curr_profit = arr[j] - arr[i] + stockBuySellIINaive(vector<int>(arr.begin() + j + 1, arr.end()));
+                profit = max(profit, curr_profit);
+            }
+        }
+    }
+    return profit;
+}
+```
+
+### Approach 2: Greedy (Optimal)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Traverse the array from day 1 to day n-1
+2. If the current day's price is higher than the previous day's price, add the difference to the result (this simulates buying at previous day's price and selling at current day's price)
+3. Continue until the end to accumulate profit from all increasing segments
+
+**Key Insight**: To maximize profit, we should capture every upward price movement. If price increases from day i to day i+1, we can buy on day i and sell on day i+1.
+
+```cpp
+int stockBuySellIIEfficient(vector<int> &arr)
+{
+    int n = arr.size();
+    int res = 0;
+
+    // Accumulate profit from all increasing segments
+    for (int i = 1; i < n; i++)
+    {
+        if (arr[i] > arr[i - 1])
+        {
+            res += arr[i] - arr[i - 1];
+        }
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach          | Time Complexity | Space Complexity |
+| ----------------- | --------------- | ---------------- |
+| Naive (Recursive) | O(N²)           | O(1)\*           |
+| Greedy (Optimal)  | O(N)            | O(1)             |
+
+\*Recursion stack space may add extra memory usage for Naive approach.
 
 ---
 
