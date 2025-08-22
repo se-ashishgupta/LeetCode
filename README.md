@@ -29,6 +29,7 @@ This repository contains implementations and explanations of various data struct
 - [15. Check If Array Is Sorted And Rotated(1752)](/Arrays/README.md#check-if-array-is-sorted-and-rotated) - Determine if array is sorted in ascending order and then rotated at some pivot
 - [16. Best Time to Buy and Sell Stock II(122)](/Arrays/README.md#best-time-to-buy-and-sell-stock-ii) - Find maximum profit from multiple stock transactions
 - [17. Longest Consecutive Sequence(128)](/Arrays/README.md#longest-consecutive-sequence) - Find the length of the longest consecutive elements sequence
+- [78. Subarray Sum Equals K(560)](/Arrays/README.md#subarray-sum-equals-k) - Count the number of subarrays whose sum equals k
 
 ---
 

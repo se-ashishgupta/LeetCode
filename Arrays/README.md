@@ -12,6 +12,7 @@
 - [8. Move Zeros to End(283)](#move-zeros-to-end)
 - [9. Check If Array Is Sorted And Rotated(1752)](#check-if-array-is-sorted-and-rotated)
 - [10. Best Time to Buy and Sell Stock II(122)](#best-time-to-buy-and-sell-stock-ii)
+- [11. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
 
 ##### 2D Array
 
@@ -1902,6 +1903,119 @@ int longestConsecutiveSequence(vector<int> &nums)
 | ------------------- | --------------- | ---------------- |
 | Naive (Sorting)     | O(N log N)      | O(1)             |
 | Efficient (Hashing) | O(N)            | O(N)             |
+
+---
+
+## Subarray Sum Equals K
+
+### Problem Statement
+
+Given an array `nums` and an integer `k`, return the total number of subarrays whose sum is exactly equal to `k`. A subarray is a contiguous non-empty sequence of elements within the array.
+
+### Examples
+
+```
+Example 1:
+Input: nums = [1, 2, 3], k = 3
+Output: 2
+Explanation:
+- Subarray [1, 2] → sum = 3
+- Subarray [3] → sum = 3
+
+Example 2:
+Input: nums = [1, 1, 1], k = 2
+Output: 2
+Explanation:
+- Subarray [1, 1] at indices (0,1) → sum = 2
+- Subarray [1, 1] at indices (1,2) → sum = 2
+
+Example 3:
+Input: nums = [3, 4, 7, 2, -3, 1, 4, 2], k = 7
+Output: 4
+Explanation:
+- Subarrays are: [3,4], [7], [7,2,-3,1], [1,4,2]
+```
+
+### Approach 1: Brute Force
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Iterate over all possible starting points of the subarray
+2. For each starting point, expand the subarray and maintain running sum
+3. Count subarrays where sum equals k
+
+```cpp
+int subarraySumEqualKNaive(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    int res = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        int temp = 0;
+        for (int j = i; j < n; j++)
+        {
+            temp += nums[j]; // subarray sum from i to j
+            if (temp == k)
+            {
+                res++;
+            }
+        }
+    }
+
+    return res;
+}
+```
+
+### Approach 2: Prefix Sum + HashMap (Optimal)
+
+- **Time Complexity**: O(N)
+- **Space Complexity**: O(N)
+
+#### Logic
+
+1. Maintain a running prefix sum while traversing the array
+2. For each prefix sum, check if there exists a previous prefix sum such that: `current_sum - previous_sum = k`
+3. Use a hashmap to store frequencies of prefix sums seen so far
+4. Initialize `mp[0] = 1` to handle cases where prefix sum itself equals k
+5. For each new prefix sum:
+   - Check if `(sum - k)` exists in map → add its frequency to result
+   - Increment frequency of current sum in map
+
+```cpp
+int subarraySumEqualK(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    int res = 0;
+    unordered_map<int, int> mp;
+    mp[0] = 1; // base case: prefix sum = k
+
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += nums[i];              // update prefix sum
+        int rem = sum - k;           // check if there exists a prefix sum with this value
+
+        if (mp.find(rem) != mp.end())
+        {
+            res += mp[rem];          // add frequency of that prefix sum
+        }
+        mp[sum]++;                   // record the current prefix sum
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach           | Time Complexity | Space Complexity |
+| ------------------ | --------------- | ---------------- |
+| Naive              | O(N²)           | O(1)             |
+| Efficient (Prefix) | O(N)            | O(N)             |
 
 ---
 
