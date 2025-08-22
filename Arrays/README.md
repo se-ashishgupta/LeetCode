@@ -13,6 +13,8 @@
 - [9. Check If Array Is Sorted And Rotated(1752)](#check-if-array-is-sorted-and-rotated)
 - [10. Best Time to Buy and Sell Stock II(122)](#best-time-to-buy-and-sell-stock-ii)
 - [11. Subarray Sum Equals K(560)](#subarray-sum-equals-k)
+- [11. Spiral Matrix(54)](#spiral-matrix)
+- [12. Rotate Image(48)](#rotate-image)
 
 ##### 2D Array
 
@@ -2016,6 +2018,221 @@ int subarraySumEqualK(vector<int> &nums, int k)
 | ------------------ | --------------- | ---------------- |
 | Naive              | O(N²)           | O(1)             |
 | Efficient (Prefix) | O(N)            | O(N)             |
+
+---
+
+## Spiral Matrix
+
+### Problem Statement
+
+Given a 2D matrix `nums`, return all elements of the matrix in spiral order. Spiral order means:
+
+- Traverse from left to right across the top row
+- Then move down the right column
+- Then traverse from right to left across the bottom row
+- Then move up the left column
+- Repeat until all elements are visited
+
+### Examples
+
+```
+Example 1:
+Input: nums = [[1,2,3],
+               [4,5,6],
+               [7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+
+Example 2:
+Input: nums = [[1,2,3,4],
+               [5,6,7,8],
+               [9,10,11,12]]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+```
+
+### Approach 1: Naive with Visited Matrix
+
+- **Time Complexity**: O(M\*N)
+- **Space Complexity**: O(M\*N)
+
+#### Logic
+
+1. Keep track of visited cells using a boolean matrix
+2. Start from (0,0) and move right → down → left → up in a loop
+3. At each step, mark visited and change direction when hitting boundary or visited cell
+4. Continue until all elements are visited
+
+### Approach 2: Optimized with Boundaries (Optimal)
+
+- **Time Complexity**: O(M\*N)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. Use four boundaries: top, bottom, left, right
+2. Traverse in four directions cyclically:
+   - Left to Right (top row) - then increment top
+   - Top to Bottom (right column) - then decrement right
+   - Right to Left (bottom row) - then decrement bottom
+   - Bottom to Top (left column) - then increment left
+3. After completing one direction, shrink the corresponding boundary
+4. Repeat until boundaries overlap
+
+```cpp
+vector<int> spiralMatrix(vector<vector<int>> &nums)
+{
+    int row = nums.size();
+    int col = nums[0].size();
+
+    vector<int> res;
+
+    int top = 0, bottom = row - 1;
+    int left = 0, right = col - 1;
+
+    int dir = 0;
+    // dir = 0 -> left to right
+    // dir = 1 -> top to bottom
+    // dir = 2 -> right to left
+    // dir = 3 -> bottom to top
+
+    while (left <= right && top <= bottom)
+    {
+        if (dir == 0)
+        {
+            // Traverse top row
+            for (int i = left; i <= right; i++)
+                res.push_back(nums[top][i]);
+            top++;
+        }
+        else if (dir == 1)
+        {
+            // Traverse right column
+            for (int i = top; i <= bottom; i++)
+                res.push_back(nums[i][right]);
+            right--;
+        }
+        else if (dir == 2)
+        {
+            // Traverse bottom row
+            for (int i = right; i >= left; i--)
+                res.push_back(nums[bottom][i]);
+            bottom--;
+        }
+        else if (dir == 3)
+        {
+            // Traverse left column
+            for (int i = bottom; i >= top; i--)
+                res.push_back(nums[i][left]);
+            left++;
+        }
+
+        // Cycle direction (0 → 1 → 2 → 3 → 0)
+        dir = (dir + 1) % 4;
+    }
+
+    return res;
+}
+```
+
+### Summary Table
+
+| Approach           | Time Complexity | Space Complexity |
+| ------------------ | --------------- | ---------------- |
+| Naive (Visited)    | O(M\*N)         | O(M\*N)          |
+| Optimized (Bounds) | O(M\*N)         | O(1)             |
+
+---
+
+## Rotate Image
+
+### Problem Statement
+
+Given a square matrix (2D vector) `nums`, rotate the image by 90 degrees clockwise **in-place** (without using another matrix). The operation should be done by transforming the matrix step by step.
+
+### Examples
+
+```
+Example 1:
+Input:
+nums = [[1,2,3],
+        [4,5,6],
+        [7,8,9]]
+
+Output:
+nums = [[7,4,1],
+        [8,5,2],
+        [9,6,3]]
+
+Example 2:
+Input:
+nums = [[5,1,9,11],
+        [2,4,8,10],
+        [13,3,6,7],
+        [15,14,12,16]]
+
+Output:
+nums = [[15,13,2,5],
+        [14,3,4,1],
+        [12,6,8,9],
+        [16,7,10,11]]
+```
+
+### Approach 1: Extra Matrix (Naive)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(N²)
+
+#### Logic
+
+1. Create a new matrix `rotated` of the same size
+2. For each element `nums[i][j]`, place it at position `rotated[j][n-1-i]`
+3. Copy the rotated matrix back to the original matrix
+
+```cpp
+// This approach uses extra space and is not shown in implementation
+// as the problem specifically asks for in-place rotation
+```
+
+### Approach 2: In-Place Rotation (Optimal)
+
+- **Time Complexity**: O(N²)
+- **Space Complexity**: O(1)
+
+#### Logic
+
+1. **Transpose the matrix**: Swap elements across the diagonal (`nums[i][j] ↔ nums[j][i]`)
+   - This converts rows into columns
+2. **Reverse each row**: Reversing rows after transpose gives the final 90° rotated matrix
+3. This avoids using extra space and modifies the matrix in-place
+
+```cpp
+void rotateImage(vector<vector<int>> &nums)
+{
+    int row = nums.size();
+
+    // Step 1: Transpose the matrix
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            swap(nums[i][j], nums[j][i]);
+        }
+    }
+
+    // Step 2: Reverse each row
+    for (auto &it : nums)
+    {
+        // &it is important: modifies the actual row in nums
+        reverse(it.begin(), it.end());
+    }
+}
+```
+
+### Summary Table
+
+| Approach             | Time Complexity | Space Complexity |
+| -------------------- | --------------- | ---------------- |
+| Naive (Extra Matrix) | O(N²)           | O(N²)            |
+| Optimized (In-Place) | O(N²)           | O(1)             |
 
 ---
 
